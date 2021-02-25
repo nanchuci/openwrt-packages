@@ -523,7 +523,7 @@ if next(diff) ~= nil then
             } else if (is_mode_aband(mode)) {
                 cr = "<%=cfgs.CountryRegionABand%>";
             } else {
-                alert("Cannot get valid CountryRegion from invalid WireleeMode");
+                alert("无法从无效的无线模式获取有效的国家/地区");
             }
         }
 
@@ -531,7 +531,7 @@ if next(diff) ~= nil then
     }
 
     function getBw(mode, ch) {
-        /* choose bw as wide as possible if modification is needed */
+        /* 如果需要修改，请尽可能选择大的频宽 */
         var bw_sel = document.getElementById('__bw');
         var wmode;
 
