@@ -57,13 +57,13 @@ local WscValue = mtkwifi.token_get(cfgs["WscConfMode"], vifidx, "0") or "0"
 
 <div id="loading" style="margin-top: 1em; display: none;">
 <img src="<%=resource%>/icons/loading.gif" alt="<%:Loading%>" style="vertical-align:e;" />
-    &nbsp;&nbsp;&nbsp; 页面加载中，请稍候......
+    &nbsp;&nbsp;&nbsp; Please waiting while the page is loading......
 </div>
 
 <form method="post" name="cbi" action="<%=luci.dispatcher.build_url("admin", "network", "wifi", "vif_cfg", devname, vifname)%>" enctype="multipart/form-data" onsubmit="return validate_security(<%=vifidx%>,<%=cfgs["HT_DisallowTKIP"]%>)" autocomplete="off">
 <% if not dev or not vif then%>
   <fieldset class="cbi-section">
-    <legend>接口不存在 - <%=vifname and devname.."@"..vifname or devname%>
+    <legend>Interface Not Exist - <%=vifname and devname.."@"..vifname or devname%>
     </legend>
   </fieldset>
 <% else %>
@@ -81,7 +81,7 @@ end
     <table id="vif-cfg-basic">
       <tbody>
         <tr>
-          <td>无线名称</td>
+          <td>SSID</td>
           <td>
             <input value="<%=vif.__ssid%>" name="<%="SSID"..vifidx%>" required="required" />
             <input value="<%=request[4]%>" name="__action" type="hidden" />
@@ -167,7 +167,7 @@ end
       </tbody>
       <tbody id="WEP" style="display:none;">
         <tr>
-          <td>加密</td>
+          <td>Encryption</td>
           <td>
             <select name="__wep_encrypttype" cfg="EncrypType">
             <% for _,v in ipairs(dev.WEP_Enc_List) do %>
@@ -178,7 +178,7 @@ end
           </td>
         </tr>
         <tr>
-          <td>预设密钥</td>
+          <td>Default Key</td>
           <td>
             <select name="__DefaultKeyID" id="__DefaultKeyID">
               <option value="1" <%if tonumber(vif.__wepkey_id) == 1 then%>selected="selected"<%end%>>1</option>
@@ -257,7 +257,7 @@ end
           </td>
         </tr>
         <tr>
-          <td>802.11i的预先认证</td>
+          <td>Pre-Authentication</td>
           <td>
             <input name="__preauth" id="__preauth" value="1"
             <% if mtkwifi.token_get(cfgs["PreAuth"], vifidx, 0) == "1" then %>
@@ -299,31 +299,31 @@ end
       </tbody>
       <tbody id="radius" style="display:none">
         <tr>
-          <td>RADIUS服务器地址</td>
+          <td>Radius Server IP</td>
           <td>
             <input value="<%=vif.__radius_server%>" type="text" name="__radius_server" id="__radius_server" cfg="RADIUS_Server" />
           </td>
         </tr>
         <tr>
-          <td>radius服务器端口</td>
+          <td>Radius Server Port</td>
           <td>
             <input value="<%=vif.__radius_port%>" type="text" name="__radius_port" id="__radius_port" cfg="RADIUS_Port" />
           </td>
         </tr>
         <tr>
-          <td>私密共享</td>
+          <td>Shared Secret</td>
           <td>
             <input value="<%=cfgs["RADIUS_Key"..vifidx]%>" type="text" name="<%="RADIUS_Key"..vifidx%>" id="<%="RADIUS_Key"..vifidx%>" />
           </td>
         </tr>
         <tr>
-          <td>会话超时</td>
+          <td>Session Timeout</td>
           <td>
             <input value="<%=mtkwifi.token_get(cfgs.session_timeout_interval, vifidx, 0)%>" type="text" name="__session_timeout_interval" id="__session_timeout_interval" /> second(s)
           </td>
         </tr>
         <tr>
-          <td>空闲超时</td>
+          <td>Idle Timeout</td>
           <td>
             <input value="<%=cfgs.idle_timeout_interval%>" type="text" name="idle_timeout_interval" id="idle_timeout_interval" /> second(s)
           </td>
