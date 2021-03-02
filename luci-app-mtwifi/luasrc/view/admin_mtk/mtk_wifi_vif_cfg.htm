@@ -63,7 +63,7 @@ local WscValue = mtkwifi.token_get(cfgs["WscConfMode"], vifidx, "0") or "0"
 <form method="post" name="cbi" action="<%=luci.dispatcher.build_url("admin", "network", "wifi", "vif_cfg", devname, vifname)%>" enctype="multipart/form-data" onsubmit="return validate_security(<%=vifidx%>,<%=cfgs["HT_DisallowTKIP"]%>)" autocomplete="off">
 <% if not dev or not vif then%>
   <fieldset class="cbi-section">
-    <legend>接口不存在 - <%=vifname and devname.."@"..vifname or devname%>
+    <legend>Interface Not Exist - <%=vifname and devname.."@"..vifname or devname%>
     </legend>
   </fieldset>
 <% else %>
